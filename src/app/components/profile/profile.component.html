@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="profile-card">
+    <h2 class="text-center">User Profile</h2>
+    
+    <div class="alert alert-error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="isLoading" class="text-center">
+      <p>Loading profile...</p>
+    </div>
+
+    <div *ngIf="!isLoading && profile">
+      <div class="profile-info">
+        <strong>Username:</strong> {{ profile.username }}
+      </div>
+      <div class="profile-info">
+        <strong>Email:</strong> {{ profile.email }}
+      </div>
+      <div class="profile-info" *ngIf="profile.firstName">
+        <strong>First Name:</strong> {{ profile.firstName }}
+      </div>
+      <div class="profile-info" *ngIf="profile.lastName">
+        <strong>Last Name:</strong> {{ profile.lastName }}
+      </div>
+      <div class="profile-info">
+        <strong>Member Since:</strong> {{ profile.createdAt | date:'medium' }}
+      </div>
+      <div class="profile-info" *ngIf="profile.lastLoginAt">
+        <strong>Last Login:</strong> {{ profile.lastLoginAt | date:'medium' }}
+      </div>
+
+      <button class="btn-secondary" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</div>
