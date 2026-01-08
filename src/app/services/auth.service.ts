@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
 export class AuthService {
   private apiUrl = `${environment.apiUrl}/auth`;
   private tokenKey = 'auth_token';
+  private userKey = 'auth_user';
   private currentUserSubject = new BehaviorSubject<LoginResponse | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
 
@@ -22,6 +23,7 @@ export class AuthService {
       .pipe(
         tap(response => {
           this.setToken(response.token);
+          this.setUser(response);
           this.currentUserSubject.next(response);
         })
       );
@@ -37,6 +39,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(this.userKey);
     this.currentUserSubject.next(null);
   }
 
@@ -52,11 +55,20 @@ export class AuthService {
     return !!this.getToken();
   }
 
+  private setUser(user: LoginResponse): void {
+    localStorage.setItem(this.userKey, JSON.stringify(user));
+  }
+
+  private getUser(): LoginResponse | null {
+    const user = localStorage.getItem(this.userKey);
+    return user ? JSON.parse(user) : null;
+  }
+
   private loadTokenFromStorage(): void {
     const token = this.getToken();
-    if (token) {
-      // You might want to validate the token here
-      // For now, we'll just set it
+    const user = this.getUser();
+    if (token && user) {
+      this.currentUserSubject.next(user);
     }
   }
 }

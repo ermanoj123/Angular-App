@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+.navbar {
+    height: 60px;
+    background: linear-gradient(to bottom, #f5f5f5, #e0e0e0);
+    border-bottom: 2px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: baseline;
+    position: relative;
+    font-weight: bold;
+    font-size: 2.2rem;
+    letter-spacing: -1px;
+
+    .logo-neo {
+        color: #4CAF50;
+        /* Green */
+    }
+
+    .logo-erp {
+        color: #8BC34A;
+        /* Lighter Green */
+        font-size: 1.2rem;
+        position: relative;
+        top: -5px;
+    }
+
+    .logo-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #8BC34A;
+        border-radius: 50%;
+        position: absolute;
+        top: 5px;
+        right: 25px;
+    }
+}
+
+.context-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    .project-name {
+        color: #333;
+    }
+
+    .separator {
+        color: #999;
+    }
+
+    .location {
+        color: #666;
+    }
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.action-icons {
+    display: flex;
+    gap: 0.5rem;
+
+    .icon-btn {
+        background: none;
+        border: none;
+        color: #777;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 4px;
+        transition: background 0.2s;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.05);
+            color: #333;
+        }
+
+        .material-icons {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #555;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background 0.2s;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    .user-icon {
+        font-size: 1.8rem;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+
+        .welcome-text {
+            color: #777;
+        }
+
+        .username {
+            color: #333;
+        }
+
+        .arrow-icon {
+            font-size: 1.2rem;
+            color: #999;
+        }
+    }
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: #777;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+
+    &:hover {
+        color: #e74c3c;
+    }
+
+    .material-icons {
+        font-size: 1.8rem;
+    }
+}
