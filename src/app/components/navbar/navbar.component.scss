@@ -2,18 +2,23 @@
 
 .navbar {
     height: 60px;
-    background: linear-gradient(to bottom, #f5f5f5, #e0e0e0);
-    border-bottom: 2px solid #ccc;
+    background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    border-bottom: 1px solid #d1d1d1;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    /* Align items to the right as logo is removed */
     align-items: center;
     padding: 0 1.5rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
+    left: 0;
     z-index: 1000;
-    width: 100%;
+    width: 100vw;
+    /* Use viewport width to be sure */
+    margin-left: calc(-50vw + 50%);
+    /* Center it if there's any odd parent centering */
     box-sizing: border-box;
 }
 

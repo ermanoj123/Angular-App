@@ -4,13 +4,38 @@
   box-sizing: border-box;
 }
 
+app-root,
+app-navbar {
+  display: block;
+  width: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  /* Prevent horizontal scroll from 100vw if scrollbar exists */
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
+}
+
+.auth-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: calc(100vh - 60px);
+  /* Adjust for navbar height if present */
+  padding: 20px;
+}
+
+.auth-wrapper-full {
+  min-height: 100vh;
 }
 
 .container {
@@ -47,13 +72,13 @@ input {
   border-radius: 8px;
   font-size: 14px;
   transition: all 0.3s ease;
-  
+
   &:focus {
     outline: none;
     border-color: #667eea;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
   }
-  
+
   &.error {
     border-color: #e74c3c;
   }
@@ -70,16 +95,16 @@ button {
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
   }
-  
+
   &:active {
     transform: translateY(0);
   }
-  
+
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
@@ -111,13 +136,14 @@ button {
   color: #667eea;
   text-decoration: none;
   font-weight: 600;
-  
+
   &:hover {
     text-decoration: underline;
   }
 }
 
-h1, h2 {
+h1,
+h2 {
   color: #2c3e50;
   margin-bottom: 30px;
 }
@@ -126,13 +152,13 @@ h1, h2 {
   padding: 12px 16px;
   border-radius: 8px;
   margin-bottom: 20px;
-  
+
   &.alert-error {
     background-color: #fee;
     color: #c33;
     border: 1px solid #fcc;
   }
-  
+
   &.alert-success {
     background-color: #efe;
     color: #3c3;
@@ -151,7 +177,7 @@ h1, h2 {
 
 .profile-info {
   margin-bottom: 15px;
-  
+
   strong {
     display: inline-block;
     width: 150px;
@@ -162,7 +188,7 @@ h1, h2 {
 .btn-secondary {
   background: #95a5a6;
   margin-top: 20px;
-  
+
   &:hover {
     background: #7f8c8d;
   }

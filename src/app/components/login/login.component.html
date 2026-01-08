@@ -1,51 +1,39 @@
-<div class="container">
-  <div class="card">
-    <h2 class="text-center">Welcome Back</h2>
-    
-    <div class="alert alert-error" *ngIf="errorMessage">
-      {{ errorMessage }}
-    </div>
+<div class="auth-wrapper auth-wrapper-full">
+  <div class="container">
+    <div class="card">
+      <h2 class="text-center">Welcome Back</h2>
 
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          [(ngModel)]="credentials.username"
-          required
-          [class.error]="loginForm.submitted && !credentials.username"
-          placeholder="Enter your username"
-        />
-        <div class="error-message" *ngIf="loginForm.submitted && !credentials.username">
-          Username is required
-        </div>
+      <div class="alert alert-error" *ngIf="errorMessage">
+        {{ errorMessage }}
       </div>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          [(ngModel)]="credentials.password"
-          required
-          [class.error]="loginForm.submitted && !credentials.password"
-          placeholder="Enter your password"
-        />
-        <div class="error-message" *ngIf="loginForm.submitted && !credentials.password">
-          Password is required
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" [(ngModel)]="credentials.username" required
+            [class.error]="loginForm.submitted && !credentials.username" placeholder="Enter your username" />
+          <div class="error-message" *ngIf="loginForm.submitted && !credentials.username">
+            Username is required
+          </div>
         </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" [(ngModel)]="credentials.password" required
+            [class.error]="loginForm.submitted && !credentials.password" placeholder="Enter your password" />
+          <div class="error-message" *ngIf="loginForm.submitted && !credentials.password">
+            Password is required
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="isLoading">
+          {{ isLoading ? 'Logging in...' : 'Login' }}
+        </button>
+      </form>
+
+      <div class="text-center mt-3">
+        <p>Don't have an account? <a routerLink="/register" class="link">Register here</a></p>
       </div>
-
-      <button type="submit" [disabled]="isLoading">
-        {{ isLoading ? 'Logging in...' : 'Login' }}
-      </button>
-    </form>
-
-    <div class="text-center mt-3">
-      <p>Don't have an account? <a routerLink="/register" class="link">Register here</a></p>
     </div>
   </div>
 </div>
