@@ -47,6 +47,36 @@
 
     button {
         flex: 1;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: linear-gradient(135deg, #28a745, #218838);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+
+        &:hover {
+            background: linear-gradient(135deg, #218838, #1e7e34);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+
+        &:disabled {
+            background: #94d3a2;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
     }
 }
 
