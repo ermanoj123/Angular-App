@@ -1,9 +1,13 @@
 <div class="container">
   <div class="profile-card">
     <h2 class="text-center">User Profile</h2>
-    
+
     <div class="alert alert-error" *ngIf="errorMessage">
       {{ errorMessage }}
+    </div>
+
+    <div class="alert alert-success" *ngIf="successMessage">
+      {{ successMessage }}
     </div>
 
     <div *ngIf="isLoading" class="text-center">
@@ -11,26 +15,60 @@
     </div>
 
     <div *ngIf="!isLoading && profile">
-      <div class="profile-info">
-        <strong>Username:</strong> {{ profile.username }}
-      </div>
-      <div class="profile-info">
-        <strong>Email:</strong> {{ profile.email }}
-      </div>
-      <div class="profile-info" *ngIf="profile.firstName">
-        <strong>First Name:</strong> {{ profile.firstName }}
-      </div>
-      <div class="profile-info" *ngIf="profile.lastName">
-        <strong>Last Name:</strong> {{ profile.lastName }}
-      </div>
-      <div class="profile-info">
-        <strong>Member Since:</strong> {{ profile.createdAt | date:'medium' }}
-      </div>
-      <div class="profile-info" *ngIf="profile.lastLoginAt">
-        <strong>Last Login:</strong> {{ profile.lastLoginAt | date:'medium' }}
+      <!-- View Mode -->
+      <div *ngIf="!isEditMode">
+        <div class="profile-info">
+          <strong>Username:</strong> {{ profile.username }}
+        </div>
+        <div class="profile-info">
+          <strong>Email:</strong> {{ profile.email }}
+        </div>
+        <div class="profile-info">
+          <strong>First Name:</strong> {{ profile.firstName || 'Not provided' }}
+        </div>
+        <div class="profile-info">
+          <strong>Last Name:</strong> {{ profile.lastName || 'Not provided' }}
+        </div>
+        <div class="profile-info">
+          <strong>Member Since:</strong> {{ profile.createdAt | date:'medium' }}
+        </div>
+        <div class="profile-info" *ngIf="profile.lastLoginAt">
+          <strong>Last Login:</strong> {{ profile.lastLoginAt | date:'medium' }}
+        </div>
+
+        <div class="button-group">
+          <button class="btn-primary" (click)="toggleEditMode()">Edit Profile</button>
+          <button class="btn-secondary" (click)="backToDashboard()">Back to Dashboard</button>
+        </div>
       </div>
 
-      <button class="btn-secondary" (click)="logout()">Logout</button>
+      <!-- Edit Mode -->
+      <div *ngIf="isEditMode">
+        <div class="form-group">
+          <label>Username:</label>
+          <input type="text" [(ngModel)]="profile.username" disabled class="form-control disabled-input" />
+          <small class="help-text">Username cannot be changed</small>
+        </div>
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="email" [(ngModel)]="editForm.email" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label>First Name:</label>
+          <input type="text" [(ngModel)]="editForm.firstName" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label>Last Name:</label>
+          <input type="text" [(ngModel)]="editForm.lastName" class="form-control" />
+        </div>
+
+        <div class="button-group">
+          <button class="btn-primary" (click)="saveProfile()" [disabled]="isSaving">
+            {{ isSaving ? 'Saving...' : 'Save Changes' }}
+          </button>
+          <button class="btn-secondary" (click)="cancelEdit()" [disabled]="isSaving">Cancel</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

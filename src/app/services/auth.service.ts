@@ -41,6 +41,10 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/change-password`, data);
   }
 
+  updateProfile(data: any): Observable<UserProfile> {
+    return this.http.put<UserProfile>(`${this.apiUrl}/profile`, data);
+  }
+
   logout(): void {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.userKey);
