@@ -6,7 +6,6 @@
     border-bottom: 1px solid #d1d1d1;
     display: flex;
     justify-content: flex-end;
-    /* Align items to the right as logo is removed */
     align-items: center;
     padding: 0 1.5rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,97 +15,29 @@
     left: 0;
     z-index: 1000;
     width: 100vw;
-    /* Use viewport width to be sure */
     margin-left: calc(-50vw + 50%);
-    /* Center it if there's any odd parent centering */
     box-sizing: border-box;
-}
-
-.navbar-left {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-.logo {
-    display: flex;
-    align-items: baseline;
-    position: relative;
-    font-weight: bold;
-    font-size: 2.2rem;
-    letter-spacing: -1px;
-
-    .logo-neo {
-        color: #4CAF50;
-        /* Green */
-    }
-
-    .logo-erp {
-        color: #8BC34A;
-        /* Lighter Green */
-        font-size: 1.2rem;
-        position: relative;
-        top: -5px;
-    }
-
-    .logo-dot {
-        width: 8px;
-        height: 8px;
-        background-color: #8BC34A;
-        border-radius: 50%;
-        position: absolute;
-        top: 5px;
-        right: 25px;
-    }
-}
-
-.context-info {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #333;
-    font-size: 1.2rem;
-    font-weight: 500;
-
-    .project-name {
-        color: #333;
-    }
-
-    .separator {
-        color: #999;
-    }
-
-    .location {
-        color: #666;
-    }
 }
 
 .navbar-right {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
-.action-icons {
-    display: flex;
-    gap: 0.5rem;
+.user-profile-container {
+    position: relative;
 
-    .icon-btn {
-        background: none;
-        border: none;
-        color: #777;
-        cursor: pointer;
-        padding: 5px;
-        border-radius: 4px;
-        transition: background 0.2s;
-
-        &:hover {
-            background: rgba(0, 0, 0, 0.05);
-            color: #333;
+    &:hover {
+        .dropdown-menu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
-        .material-icons {
-            font-size: 1.5rem;
+        .user-profile {
+            background: rgba(0, 0, 0, 0.05);
         }
     }
 }
@@ -117,16 +48,13 @@
     gap: 0.5rem;
     color: #555;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 8px 12px;
     border-radius: 4px;
-    transition: background 0.2s;
-
-    &:hover {
-        background: rgba(0, 0, 0, 0.05);
-    }
+    transition: all 0.2s;
 
     .user-icon {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        color: #888;
     }
 
     .user-info {
@@ -137,7 +65,7 @@
         font-weight: 600;
 
         .welcome-text {
-            color: #777;
+            color: #999;
         }
 
         .username {
@@ -145,23 +73,91 @@
         }
 
         .arrow-icon {
-            font-size: 1.2rem;
-            color: #999;
+            font-size: 1.1rem;
+            color: #bbb;
+            transition: transform 0.2s;
         }
     }
 }
 
-.logout-btn {
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eee;
+    padding: 8px 0;
+    margin-top: 5px;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.2s ease;
+    z-index: 1001;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -6px;
+        right: 20px;
+        width: 12px;
+        height: 12px;
+        background: white;
+        transform: rotate(45deg);
+        border-left: 1px solid #eee;
+        border-top: 1px solid #eee;
+    }
+
+    .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 16px;
+        color: #555;
+        text-decoration: none;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: background 0.2s;
+
+        .item-icon {
+            font-size: 1.2rem;
+            color: #777;
+        }
+
+        &:hover {
+            background: #f8f9fa;
+            color: #333;
+
+            .item-icon {
+                color: #333;
+            }
+        }
+
+        &.divider {
+            border-top: 1px solid #eee;
+            margin: 4px 0;
+            padding: 0;
+            height: 0;
+        }
+    }
+}
+
+.logout-btn-nav {
     background: none;
     border: none;
     color: #777;
     cursor: pointer;
-    padding: 5px;
+    padding: 8px;
     display: flex;
     align-items: center;
-    transition: color 0.2s;
+    border-radius: 4px;
+    transition: all 0.2s;
 
     &:hover {
+        background: rgba(0, 0, 0, 0.05);
         color: #e74c3c;
     }
 

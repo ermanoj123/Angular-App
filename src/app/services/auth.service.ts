@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, tap } from 'rxjs';
-import { LoginRequest, LoginResponse, RegisterRequest, UserProfile } from '../models/user.model';
+import { LoginRequest, LoginResponse, RegisterRequest, UserProfile, ChangePasswordRequest } from '../models/user.model';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -35,6 +35,10 @@ export class AuthService {
 
   getProfile(): Observable<UserProfile> {
     return this.http.get<UserProfile>(`${this.apiUrl}/profile`);
+  }
+
+  changePassword(data: ChangePasswordRequest): Observable<any> {
+    return this.http.post(`${this.apiUrl}/change-password`, data);
   }
 
   logout(): void {

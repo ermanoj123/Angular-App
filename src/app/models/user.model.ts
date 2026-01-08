@@ -27,3 +27,9 @@ export interface UserProfile {
   createdAt: Date;
   lastLoginAt?: Date;
 }
+
+export interface ChangePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}

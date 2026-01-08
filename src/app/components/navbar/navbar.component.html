@@ -2,18 +2,39 @@
     <!-- Removed logo and context info as requested -->
 
     <div class="navbar-right">
-        <!-- Removed search and fullscreen icons as requested -->
+        <div class="user-profile-container">
+            <div class="user-profile">
+                <span class="material-icons user-icon">person_outline</span>
+                <div class="user-info">
+                    <span class="welcome-text">WELCOME :</span>
+                    <span class="username">{{ username | uppercase }}</span>
+                    <span class="material-icons arrow-icon">expand_more</span>
+                </div>
+            </div>
 
-        <div class="user-profile">
-            <span class="material-icons user-icon">person_outline</span>
-            <div class="user-info">
-                <span class="welcome-text">WELCOME :</span>
-                <span class="username">{{ username | uppercase }}</span>
-                <span class="material-icons arrow-icon">expand_more</span>
+            <div class="dropdown-menu">
+                <div class="dropdown-item">
+                    <span class="material-icons item-icon">person_add</span>
+                    <span>Demo-Jc</span>
+                </div>
+                <div class="dropdown-item">
+                    <span class="material-icons item-icon">inventory_2</span>
+                    <span>Itahari</span>
+                </div>
+                <div class="dropdown-item divider"></div>
+                <a class="dropdown-item" routerLink="/change-password">
+                    <span class="material-icons item-icon">logout</span>
+                    <span>Change Password</span>
+                </a>
+                <div class="dropdown-item divider"></div>
+                <div class="dropdown-item" (click)="logout()">
+                    <span class="material-icons item-icon">logout</span>
+                    <span>Log Out</span>
+                </div>
             </div>
         </div>
 
-        <button class="logout-btn" (click)="logout()" title="Logout">
+        <button class="logout-btn-nav" (click)="logout()" title="Logout">
             <span class="material-icons">logout</span>
         </button>
     </div>
