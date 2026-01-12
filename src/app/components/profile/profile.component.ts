@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserProfile } from '../../models/user.model';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -111,6 +112,8 @@ export class ProfileComponent implements OnInit {
     if (!relativePath) return '';
     // Remove leading slash if present
     const path = relativePath.startsWith('/') ? relativePath.substring(1) : relativePath;
-    return `http://192.168.1.68:8000/${path}`;
+    // Extract base URL from apiUrl (remove /api suffix)
+    const baseUrl = environment.apiUrl.replace('/api', '');
+    return `${baseUrl}/${path}`;
   }
 }
