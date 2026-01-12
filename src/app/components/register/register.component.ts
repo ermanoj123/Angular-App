@@ -24,11 +24,46 @@ export class RegisterComponent {
   errorMessage = '';
   successMessage = '';
   isLoading = false;
+  selectedFile: File | null = null;
+  imagePreview: string | null = null;
 
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
+
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      // Validate file type
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+      if (!allowedTypes.includes(file.type)) {
+        this.errorMessage = 'Invalid file type. Only JPG, PNG, and GIF are allowed.';
+        return;
+      }
+
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        this.errorMessage = 'File size must be less than 5MB.';
+        return;
+      }
+
+      this.selectedFile = file;
+      this.errorMessage = '';
+
+      // Create image preview
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imagePreview = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  removeImage(): void {
+    this.selectedFile = null;
+    this.imagePreview = null;
+  }
 
   onSubmit(): void {
     if (!this.registerData.username || !this.registerData.email || !this.registerData.password) {
@@ -45,7 +80,22 @@ export class RegisterComponent {
     this.errorMessage = '';
     this.successMessage = '';
 
-    this.authService.register(this.registerData).subscribe({
+    // Create FormData for multipart upload
+    const formData = new FormData();
+    formData.append('username', this.registerData.username);
+    formData.append('email', this.registerData.email);
+    formData.append('password', this.registerData.password);
+    if (this.registerData.firstName) {
+      formData.append('firstName', this.registerData.firstName);
+    }
+    if (this.registerData.lastName) {
+      formData.append('lastName', this.registerData.lastName);
+    }
+    if (this.selectedFile) {
+      formData.append('profileImage', this.selectedFile);
+    }
+
+    this.authService.register(formData).subscribe({
       next: (response) => {
         console.log('Registration successful', response);
         this.isLoading = false;
