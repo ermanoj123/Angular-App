@@ -106,4 +106,11 @@ export class ProfileComponent implements OnInit {
   backToDashboard(): void {
     this.router.navigate(['/dashboard']);
   }
+
+  getImageUrl(relativePath: string): string {
+    if (!relativePath) return '';
+    // Remove leading slash if present
+    const path = relativePath.startsWith('/') ? relativePath.substring(1) : relativePath;
+    return `http://192.168.1.68:8000/${path}`;
+  }
 }

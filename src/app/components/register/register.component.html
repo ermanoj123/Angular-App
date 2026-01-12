@@ -52,6 +52,36 @@
             placeholder="Enter your last name (optional)" />
         </div>
 
+        <div class="form-group">
+          <label for="profileImage">Profile Image</label>
+          <div class="image-upload-container">
+            <input type="file" id="profileImage" name="profileImage" accept="image/*" (change)="onFileSelected($event)"
+              #fileInput style="display: none;" />
+
+            <div *ngIf="!imagePreview" class="upload-placeholder" (click)="fileInput.click()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <p>Click to upload profile image</p>
+              <small>JPG, PNG or GIF (max 5MB)</small>
+            </div>
+
+            <div *ngIf="imagePreview" class="image-preview-container">
+              <img [src]="imagePreview" alt="Profile preview" class="image-preview" />
+              <button type="button" class="remove-image-btn" (click)="removeImage()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <button type="submit" [disabled]="isLoading">
           {{ isLoading ? 'Creating Account...' : 'Register' }}
         </button>
